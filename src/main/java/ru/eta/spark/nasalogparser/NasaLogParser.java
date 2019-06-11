@@ -4,6 +4,7 @@ import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Encoders;
 import org.apache.spark.sql.SaveMode;
 import org.apache.spark.sql.SparkSession;
+import scala.Tuple2;
 
 import java.util.Objects;
 
@@ -49,12 +50,18 @@ public class NasaLogParser {
      */
     private static void task1(Dataset<RequestRow> df) {
         df.filter(col("returnCode").between(500, 599))
-                .groupBy("path")
-                .count()
-                .select("count", "path")
-                .sort(desc("count"))
-                .write().mode(SaveMode.Overwrite).option("sep", ";")
-                .csv(HDFS_URL + TASK1_RESULTS_FOLDER);
+                .toJavaRDD()
+                .mapToPair(e -> new Tuple2<>(e.getPath(), 1))
+                .reduceByKey(Integer::sum)
+                .saveAsTextFile(HDFS_URL + TASK1_RESULTS_FOLDER);
+
+//        df.filter(col("returnCode").between(500, 599))
+//                .groupBy("path")
+//                .count()
+//                .select("count", "path")
+//                .sort(desc("count"))
+//                .write().mode(SaveMode.Overwrite).option("sep", ";")
+//                .csv(HDFS_URL + TASK1_RESULTS_FOLDER);
     }
 
     /**
