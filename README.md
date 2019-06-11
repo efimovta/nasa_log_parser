@@ -9,7 +9,7 @@ From: http://ita.ee.lbl.gov/html/contrib/NASA-HTTP.html
 Direct link: ftp://ita.ee.lbl.gov/traces/NASA_access_log_Jul95.gz
 
 
-##Useful commands:
+## Useful commands:
 
 
 ` docker-compose up -d ` OR ` docker-compose up -d --build ` in some cases
@@ -23,7 +23,7 @@ docker exec -it nasalogparser_master_1 standalone_nasalogparser_start.sh
 ```
 
 
-###Process names:
+### Process names:
 useful when use 'jps'
 
     - NameNode = master hdfs
@@ -35,7 +35,7 @@ useful when use 'jps'
     - Worker = worker spark
     - Master = master spark
 
-###Useful links
+### Useful links
     HDFS
     http://localhost:9870/ - NameNode
     http://localhost:9864/ - DataNode +[9865,9866]
