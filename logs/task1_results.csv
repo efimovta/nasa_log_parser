@@ -1,0 +1,10 @@
+53;/cgi-bin/geturlstats.pl HTTP/1.0
+7;/ksc.html HTTP/1.0
+4;/Harvest/cgi-bin/BrokerQuery.pl.cgi?query=oms&host=titan04.ksc.nasa.gov%3A8501&caseflag=on&wordflag=on&errorflag=0&opaqueflag=on&descflag=on&verbose=on&maxresultflag=50 HTTP/1.0
+3;/images/getstats.gif HTTP/1.0
+3;/cgi-bin/BrokerQuery.pl?query=oms&host=titan04.ksc.nasa.gov%3A8501&caseflag=on&wordflag=on&errorflag=0&opaqueflag=on&descflag=on&verbose=on&maxresultflag=50 HTTP/1.0
+2;/ HTTP/1.0
+1;/shuttle/missions/sts-70/mission-sts-70.html HTTP/1.0
+1;/shuttle/missions/sts-69/mission-sts-69.html HTTP/1.0
+1;/cgi-bin/BrokerQuery.pl?query=oms%04%06%06&host=titan04.ksc.nasa.gov%3A8501&caseflag=on&wordflag=on&errorflag=0&opaqueflag=on&descflag=on&verbose=on&maxresultflag=50 HTTP/1.0
+1;/htbin/cdt.pl HTTP/1.0

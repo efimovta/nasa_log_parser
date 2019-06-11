@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ru.eta.spark</groupId>
+    <artifactId>nasalogparser</artifactId>
+    <version>1.0</version>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <spark.version>2.4.3</spark.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-core_2.12</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_2.12</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-files-on-build</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/../java</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.build.directory}</directory>
+                                    <include>*.jar</include>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--<plugin>-->
+                <!--<artifactId>exec-maven-plugin</artifactId>-->
+                <!--<groupId>org.codehaus.mojo</groupId>-->
+                <!--<version>1.2.1</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>start app on docker</id>-->
+                        <!--<phase>install</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>exec</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<executable>winpty</executable>-->
+                            <!--<arguments>-->
+                                <!--<argument>docker</argument>-->
+                                <!--<argument>exec</argument>-->
+                                <!--<argument>-it</argument>-->
+                                <!--<argument>nasalogs-parser-master_master_1</argument>-->
+                                <!--<argument>/scripts/standalone_start.sh</argument>-->
+                            <!--</arguments>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
+        </plugins>
+    </build>
+
+</project>

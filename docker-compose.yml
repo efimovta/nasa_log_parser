@@ -1,0 +1,62 @@
+version: "3"
+services:
+  master:
+    build: .
+    image: spark-hadoop
+    hostname: master
+    ports:
+                    # History Server
+      - 9990:9990
+                    # yarn
+      - 8088:8088
+      - 8042:8042
+                    # hdfs
+      - 9870:9870
+      - 9864:9864
+                    # spark
+      - 8080:8080
+      - 8081:8081
+    volumes:
+      - ./conf:/conf
+      - ./jars:/jars
+      - ./scripts:/scripts
+      - ./logs:/logs
+
+  worker0:
+    image: spark-hadoop
+    hostname: worker0
+    links:
+      - master
+    ports:
+                    # yarn
+      - 8045:8042
+                    # hdfs
+      - 9865:9864
+                    # spark
+      - 8082:8081      
+    volumes:
+      - ./conf:/conf
+      - ./scripts:/scripts
+
+  worker1:
+    image: spark-hadoop
+    hostname: worker1
+    links:
+      - master
+    ports:
+                    # yarn
+      - 8044:8042
+                    # hdfs
+      - 9866:9864
+                    # spark
+      - 8083:8081
+    volumes:
+      - ./conf:/conf
+      - ./scripts:/scripts
+
+# Do not need 'expose' in same network.
+# By def all services from one compose file in one network.
+
+
+
+
