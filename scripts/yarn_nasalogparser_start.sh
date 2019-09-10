@@ -1,8 +1,7 @@
 #!/bin/bash
 
-#   useful for 'docker exec' while not use ENV in Dockerfile
-#   /root/.bashrc does not work! :(
-set -a && . "/root/.bashrc" && set +a
+#   useful when executing script directly from 'docker exec'
+. "/root/.bashrc"
 
 
 hadoop fs -rm -r /task1_results /task2_results /task3_results

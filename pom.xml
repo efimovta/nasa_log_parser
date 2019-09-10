@@ -12,6 +12,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <spark.version>2.4.3</spark.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
@@ -40,7 +41,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/../java</outputDirectory>
+                            <outputDirectory>${project.build.directory}/../jars</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>${project.build.directory}</directory>
@@ -51,30 +52,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--<plugin>-->
-                <!--<artifactId>exec-maven-plugin</artifactId>-->
-                <!--<groupId>org.codehaus.mojo</groupId>-->
-                <!--<version>1.2.1</version>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<id>start app on docker</id>-->
-                        <!--<phase>install</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>exec</goal>-->
-                        <!--</goals>-->
-                        <!--<configuration>-->
-                            <!--<executable>winpty</executable>-->
-                            <!--<arguments>-->
-                                <!--<argument>docker</argument>-->
-                                <!--<argument>exec</argument>-->
-                                <!--<argument>-it</argument>-->
-                                <!--<argument>nasalogs-parser-master_master_1</argument>-->
-                                <!--<argument>/scripts/standalone_start.sh</argument>-->
-                            <!--</arguments>-->
-                        <!--</configuration>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
         </plugins>
     </build>
 

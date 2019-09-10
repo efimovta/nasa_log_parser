@@ -20,8 +20,7 @@ COPY /conf/env_vars.sh /root/
 RUN cat /root/env_vars.sh >> /root/.bashrc
 RUN rm -f /root/env_vars.sh
 
-RUN set -a && . "/root/.bashrc" && set +a && \
-    hdfs namenode -format
+RUN . /root/.bashrc && hdfs namenode -format
 
 ENTRYPOINT ["/bin/bash", "-c", "sh /scripts/entrypoint.sh"]
 

@@ -46,7 +46,7 @@ public class NasaLogParser {
 
 
     /**
-     * Подготовить список запросов, которые закончились 5xx ошибкой, с количеством неудачных запросов
+     * Prepare a list of requests that ended in a 5xx error, with the number of failed requests.
      */
     private static void task1(Dataset<RequestRow> df) {
         df.filter(col("returnCode").between(500, 599))
@@ -54,6 +54,8 @@ public class NasaLogParser {
                 .mapToPair(e -> new Tuple2<>(e.getPath(), 1))
                 .reduceByKey(Integer::sum)
                 .saveAsTextFile(HDFS_URL + TASK1_RESULTS_FOLDER);
+
+        /* NOTE: groupBy() does redundant sorting -> alg works slower */
 
 //        df.filter(col("returnCode").between(500, 599))
 //                .groupBy("path")
@@ -65,10 +67,9 @@ public class NasaLogParser {
     }
 
     /**
-     * Подготовить временной ряд с количеством запросов по датам для всех
-     * используемых комбинаций http методов и return codes. Исключить из
-     * результирующего файла комбинации, где количество событий в сумме было
-     * меньше 10
+     * Prepare a time series with the number of requests by dates for all combinations of
+     * http methods and return codes used. Exclude combinations from the resulting file where
+     * the number of events in the total was less than 10.
      */
     private static void task2(Dataset<RequestRow> df) {
         df.groupBy("date", "method", "returnCode")
@@ -81,8 +82,8 @@ public class NasaLogParser {
     }
 
     /**
-     *  Произвести расчет скользящим окном в одну неделю количества запросов
-     * закончившихся с кодами 4xx и 5xx
+     *  Calculate, by a sliding window in one week, the number of requests ending with codes
+     *  4xx and 5xx
      */
     private static void task3(Dataset<RequestRow> df) {
         df.filter(col("returnCode").between(400, 599))

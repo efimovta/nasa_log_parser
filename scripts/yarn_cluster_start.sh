@@ -1,15 +1,14 @@
 #!/bin/bash
 
-#   useful for 'docker exec' while not use ENV in Dockerfile
-#   /root/.bashrc does not work! :(
-set -a && . "/root/.bashrc" && set +a
+#   useful when executing script directly from 'docker exec'
+. "/root/.bashrc"
 
 
 echo Timur: tring stop all started at first...
 stop-yarn.sh; stop-slaves.sh; stop-master.sh; stop-dfs.sh
 
 echo Timur: starting yarn cluster...
-update_conf.sh
+source /scripts/update_conf.sh
 start-dfs.sh & start-yarn.sh
 hdfs dfsadmin -safemode leave
 

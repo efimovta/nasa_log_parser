@@ -16,6 +16,10 @@ public class RequestRow {
         this.date = date;
     }
 
+    public RequestRow() {
+        //empty constructor
+    }
+
     public String getPath() {
         return path;
     }
