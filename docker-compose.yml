@@ -29,7 +29,7 @@ services:
       - master
     ports:
                     # yarn
-      - 8045:8042
+      - 8044:8042
                     # hdfs
       - 9865:9864
                     # spark
@@ -45,7 +45,7 @@ services:
       - master
     ports:
                     # yarn
-      - 8044:8042
+      - 8045:8042
                     # hdfs
       - 9866:9864
                     # spark
